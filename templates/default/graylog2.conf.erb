@@ -1,0 +1,63 @@
+# On which port (UDP) should we listen for Syslog messages? (Standard: 514)
+syslog_listen_port = <%= node['graylog2']['syslog']['port'] %>
+syslog_protocol = <%= node['graylog2']['syslog']['protocol'] %>
+
+# ElasticSearch URL (default: http://localhost:9200/)
+elasticsearch_url = <%= node['graylog2']['elasticsearch']['url'] %>
+elasticsearch_index_name = graylog2
+
+# Always try a reverse DNS lookup instead of parsing hostname from syslog message?
+force_syslog_rdns = <%= node['graylog2']['syslog']['force_rdns'] %>
+
+# MongoDB Configuration
+mongodb_useauth = <%= node['graylog2']['mongodb']['useauth'] %>
+mongodb_user = <%= node['graylog2']['mongodb']['user'] %>
+mongodb_password = <%= node['graylog2']['mongodb']['password'] %>
+mongodb_host = <%= node['graylog2']['mongodb']['host'] %>
+#mongodb_replica_set = localhost:27017,localhost:27018,localhost:27019
+mongodb_database = graylog2
+mongodb_port = <%= node['graylog2']['mongodb']['port'] %>
+
+# Graylog2 uses an internal message queue that holds all received messages until they are indexed. The mq_batch_size parameter defines how many messages are sent
+# to ElasticSearch at once (using a _bulk update: http://www.elasticsearch.org/guide/reference/api/bulk.html). The mq_poll_freq parameter controls in which
+# interval (in seconds) the message batch is sent. Example: If you leave the standard values (mq_batch_size = 4000, mq_poll_freq = 1), Graylog2 will index 4000 messages
+# every second. If you have spikes with more than 4000 messages per second, the queue will start growing until you get under 4000 messages/second again. The queue is
+# FIFO and can grow until you run out of RAM. Note that the queue *only* resists in RAM, so if you set the mq_poll_freq to a high value, you may lose a lot of not yet
+# indexed messages when the server crashes. Run the server in debug mode (java -jar graylog2-server.jar --debug) with a |grep '^INFO' to see debug information about
+# the queue and it's size. (INFO : org.graylog2.periodical.BulkIndexerThread - About to index max 4000 messages. You have a total of 103 messages in the queue. [freq:1s])
+# You can also monitor the queue size in your graylog2-web-interface.
+mq_batch_size = <%= node['graylog2']['mq_batch_size'] %>
+mq_poll_freq = <%= node['graylog2']['mq_poll_freq'] %>
+
+# You can set a maximum size of the message queue. If this size is reached, all new messages will be rejected until messages are removed/indexed from the queue.
+# 0 = unlimited queue size (default)
+mq_max_size = <%= node['graylog2']['mq_max_size'] %>
+
+# Raise this according to the maximum connections your MongoDB server can handle if you encounter MongoDB connection problems.
+mongodb_max_connections = <%= node['graylog2']['mongodb']['max_connections'] %>
+
+# Number of threads allowed to be blocked by MongoDB connections multiplier. Default: 5
+# If mongodb_max_connections is 100, and mongodb_threads_allowed_to_block_multiplier is 5, then 500 threads can block. More than that and an exception will be thrown.
+# http://api.mongodb.org/java/current/com/mongodb/MongoOptions.html#threadsAllowedToBlockForConnectionMultiplier
+mongodb_threads_allowed_to_block_multiplier = <%= node['graylog2']['mongodb']['threads_allowed_to_block_multiplier'] %>
+
+# Graylog Extended Log Format (GELF)
+use_gelf = <%= node['graylog2']['gelf']['use'] %>
+gelf_listen_address = <%= node['graylog2']['gelf']['listen_address'] %>
+gelf_listen_port = <%= node['graylog2']['gelf']['listen_port'] %>
+
+# Drools Rule File (Use to rewrite incoming log messages)
+# rules_file = /etc/graylog2.d/rules/graylog2.drl
+
+# AMQP
+amqp_enabled = <%= node['graylog2']['amqp']['enabled'] %>
+amqp_subscribed_queues = <%= node['graylog2']['amqp']['subscribed_queues'].join(',') %>
+amqp_host = <%= node['graylog2']['amqp']['host'] %>
+amqp_port = <%= node['graylog2']['amqp']['port'] %>
+amqp_username = <%= node['graylog2']['amqp']['user'] %>
+amqp_password = <%= node['graylog2']['amqp']['password'] %>
+amqp_virtualhost = <%= node['graylog2']['amqp']['virtualhost'] %>
+
+# Forwarders
+# Timeout in seconds for each connection and read of Logg.ly API when forwarding messages. Default: 3
+forwarder_loggly_timeout = <%= node['graylog2']['loggly']['forwarder_timeout'] %>

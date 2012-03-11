@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd <%= node['graylog2']['prefix'] %>/graylog2-server-<%= node['graylog2']['server']['version'] %>
+exec 2>&1
+exec chpst -u <%= node['graylog2']['syslog']['user'] %> java -jar graylog2-server.jar

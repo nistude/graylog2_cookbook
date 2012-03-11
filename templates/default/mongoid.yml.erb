@@ -1,0 +1,8 @@
+production:
+  host: <%= node['graylog2']['mongodb']['host'] %>
+  port: <%= node['graylog2']['mongodb']['port'] %>
+  database: <%= node['graylog2']['mongodb']['database'] %>
+<% if node['graylog2']['mongodb']['useauth'] == 'true' -%>
+  username: <%= node['graylog2']['mongodb']['user'] %>
+  password: <%= node['graylog2']['mongodb']['password'] %>
+<% end -%>
