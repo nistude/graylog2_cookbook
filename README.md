@@ -1,7 +1,7 @@
 Description
 ===========
 
-Installs a greylog2 server and web interface from source.
+Installs a graylog2 server and web interface from source.
 
 Requirements
 ============
