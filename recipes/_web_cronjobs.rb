@@ -14,7 +14,7 @@ end
 
 subscription_action = :create
 if node['graylog2']['web_interface']['subscriptions']['enable'] = 'false'
-  streamsubscription_action = :delete
+  subscription_action = :delete
 end
 
 cron "send graylog2 stream subscriptions" do
