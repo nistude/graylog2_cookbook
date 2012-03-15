@@ -1,29 +1,29 @@
 general:
   # Used for example to generate permalinks. Don't add 'http://' or trailing
   # slashes.
-  external_hostname: <%= @public_hostname %>
+  external_hostname: "<%= @public_hostname %>"
   # http://ruby-doc.org/core/classes/Time.html#M000298 (strftime syntax)
-  date_format: <%= node['graylog2']['web_interface']['date_format'] %>
+  date_format: "<%= node['graylog2']['web_interface']['date_format'] %>"
   # Allowing deleting of messages negatively impacts performance
-  allow_deleting: <%= node['graylog2']['web_interface']['allow_deleting'] %>
+  allow_deleting: "<%= node['graylog2']['web_interface']['allow_deleting'] %>"
   # Enables manual (/versioncheck/index) and automatic (every 30min from
   # overview page) version checking against graylog2.org via HTTP.
-  allow_version_check: <%= node['graylog2']['web_interface']['allow_version_check'] %>
+  allow_version_check: "<%= node['graylog2']['web_interface']['allow_version_check'] %>"
   # Set an own cookie name - Useful for multiple deployments on same host like
   # example.org/staging1/graylog2, example.org/staging2/graylog2
   # custom_cookie_name: graylog2_staging1
 
 # Settings for stream subscription emails.
 subscriptions:
-  from: <%= node['graylog2']['web_interface']['subscriptions']['from'] %>
+  from: "<%= node['graylog2']['web_interface']['subscriptions']['from'] %>"
   subject: "[graylog2] Subscription"
 
 # Settings for stream alarm emails.
 streamalarms:
-  from: <%= node['graylog2']['web_interface']['streamalarms']['from'] %>
+  from: "<%= node['graylog2']['web_interface']['streamalarms']['from'] %>"
   subject: "[graylog2] Stream alarm!"
 
 hoptoad:
-  enabled: <%= node['graylog2']['web_interface']['hoptoad']['enable'] %>
-  ssl: <%= node['graylog2']['web_interface']['hoptoad']['ssl'] %>
-  api_key: <%= node['graylog2']['web_interface']['hoptoad']['api_key'] %>
+  enabled: "<%= node['graylog2']['web_interface']['hoptoad']['enable'] %>"
+  ssl: "<%= node['graylog2']['web_interface']['hoptoad']['ssl'] %>"
+  api_key: "<%= node['graylog2']['web_interface']['hoptoad']['api_key'] %>"
