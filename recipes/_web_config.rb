@@ -1,11 +1,9 @@
 # Install web interface configuration
 
-template "#{node['graylog2']['prefix']}/graylog2-web-interface-#{node['graylog2']['web_interface']['version']}/config/mongoid.yml" do
+template "#{node['graylog2']['prefix']}/graylog2-web-interface-#{node['graylog2']['web_interface']['version']}/config/email.yml" do
   owner node['graylog2']['user']
   group node['graylog2']['group']
-  mode "0400"
-
-  notifies :run, resources(:execute => "restart passenger")
+  mode "0644"
 end
 
 public_hostname = node['fqdn']
@@ -23,3 +21,12 @@ template "#{node['graylog2']['prefix']}/graylog2-web-interface-#{node['graylog2'
 
   notifies :run, resources(:execute => "restart passenger")
 end
+
+template "#{node['graylog2']['prefix']}/graylog2-web-interface-#{node['graylog2']['web_interface']['version']}/config/mongoid.yml" do
+  owner node['graylog2']['user']
+  group node['graylog2']['group']
+  mode "0400"
+
+  notifies :run, resources(:execute => "restart passenger")
+end
+

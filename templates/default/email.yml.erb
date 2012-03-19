@@ -1,0 +1,13 @@
+production:
+  via: <%= node['graylog2']['email']['transport'] %>
+<% if node['graylog2']['email']['transport'] == 'smtp' -%>
+  host: <%= node['graylog2']['email']['relay'] %>
+  domain: <%= node['graylog2']['email']['domain'] %>
+  enable_starttls_auto: <%= node['graylog2']['email']['enable_starttls_auto'] %>
+  port: <%= node['graylog2']['email']['port'] %>
+  <% if node['graylog2']['email']['smtpauth']['type'] -%>
+  auth: <%= node['graylog2']['email']['smtpauth']['type'] %>
+  user: <%= node['graylog2']['email']['smtpauth']['user'] %>
+  password: <%= node['graylog2']['email']['smtpauth']['password'] %>
+  <% end -%>
+<% end -%>

@@ -18,6 +18,18 @@ default['graylog2']['amqp']['password'] = 'secret'
 default['graylog2']['amqp']['virtualhost'] = '/'
 default['graylog2']['amqp']['subscribed_queues'] = ['queue1:gelf', 'queue2:syslog']
 
+# 'smtp' or 'sendmail'
+default['graylog2']['email']['transport'] = 'smtp'
+# further email settings are only relevant for 'smtp' transport
+default['graylog2']['email']['domain'] = 'example.org'
+default['graylog2']['email']['enable_starttls_auto'] = 'true'
+default['graylog2']['email']['port'] = 25
+default['graylog2']['email']['relay'] = 'smtp.example.org'
+# 'plain', 'login', 'cram_md5', use false to disable
+default['graylog2']['email']['smtpauth']['type'] = 'plain'
+default['graylog2']['email']['smtpauth']['user'] = 'somebody'
+default['graylog2']['email']['smtpauth']['password'] = 'secret'
+
 default['graylog2']['elasticsearch']['url'] = 'http://localhost:9200/'
 
 default['graylog2']['gelf']['use'] = 'true'
