@@ -24,3 +24,11 @@ directory "#{node['graylog2']['prefix']}/graylog2-web-interface-#{node['graylog2
   group node['graylog2']['group']
   mode "0755"
 end
+
+file "#{node['graylog2']['prefix']}/graylog2-web-interface-#{node['graylog2']['web_interface']['version']}/log/production.log" do
+  content ""
+  owner node['graylog2']['user']
+  group node['graylog2']['group']
+  mode "0644"
+  action :create_if_missing
+end
