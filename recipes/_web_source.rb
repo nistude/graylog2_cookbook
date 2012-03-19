@@ -18,3 +18,9 @@ execute "extract graylog2 web interface" do
   group node['graylog2']['group']
   creates "#{node['graylog2']['prefix']}/graylog2-web-interface-#{node['graylog2']['web_interface']['version']}/build_date"
 end
+
+directory "#{node['graylog2']['prefix']}/graylog2-web-interface-#{node['graylog2']['web_interface']['version']}/log" do
+  owner node['graylog2']['user']
+  group node['graylog2']['group']
+  mode "0755"
+end
