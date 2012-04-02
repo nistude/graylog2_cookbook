@@ -13,7 +13,7 @@ cron "send graylog2 stream alarms" do
 end
 
 subscription_action = :create
-if node['graylog2']['web_interface']['subscriptions']['enable'] = 'false'
+if node['graylog2']['web_interface']['subscriptions']['enable'] == 'false'
   subscription_action = :delete
 end
 
