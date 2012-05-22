@@ -1,5 +1,5 @@
-default['graylog2']['server']['version'] = '0.9.6'
-default['graylog2']['web_interface']['version'] = '0.9.6'
+default['graylog2']['server']['version'] = '0.9.6p1-RC2'
+default['graylog2']['web_interface']['version'] = '0.9.6p1-RC2'
 
 default['graylog2']['prefix'] = '/opt'
 
