@@ -1,3 +1,4 @@
+name              "graylog2"
 maintainer        "Nikolay Sturm"
 maintainer_email  "opscode@erisiandiscord.de"
 license           "Apache 2.0"
